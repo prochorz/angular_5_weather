@@ -1,0 +1,56 @@
+<div class="weather" *ngIf="weatherToDay">
+  <div class="weather__currentdate">
+    <p>{{weatherToDay.date}}</p>
+  </div>
+
+  <div class="weather__header">
+    <div class="weather__header__city">{{weatherToDay.city.name}}, {{weatherToDay.city.country}}</div>
+    <div class="weather__header__temperature" [innerHTML]="weatherToDay.temp"></div>
+    <div class="weather__header__condition">
+      <img src="{{weatherToDay.condition.icon}}"/>
+      <span>{{weatherToDay.condition.description}}</span>
+    </div>
+  </div>
+
+
+  <div class="weather__properties">
+    <div><strong>Pressure:</strong> {{weatherToDay.pressure}}</div>
+    <div><strong>Humidity:</strong> {{weatherToDay.humidity}}</div>
+    <div><strong>Wind Speed:</strong> {{weatherToDay.speed}}</div>
+    <div><strong>Clouds:</strong> {{weatherToDay.clouds}}</div>
+  </div>
+
+
+  <div class="weather__graph">
+    <div class="weather__graph__title">
+      <p>Forecast 16 days</p>
+    </div>
+
+    <div class="weather__graph__tabs">
+
+      <ul class="weather__graph__tabs__nav">
+        <li [ngClass]="{'js-active' : chartState === 'wind'}" ><a href="#" (click)="setProperties('wind')">Wind</a></li>
+        <li [ngClass]="{'js-active' : chartState === 'temperature'}" ><a href="#" (click)="setProperties('temperature')">Temperature</a></li>
+        <li [ngClass]="{'js-active' : chartState === 'pressure'}" ><a href="#" (click)="setProperties('pressure')">Pressure</a></li>
+        <li [ngClass]="{'js-active' : chartState === 'humidity'}" ><a href="#" (click)="setProperties('humidity')">Humidity</a></li>
+      </ul>
+
+      <div class="weather__graph__tabs__box">
+        <div class="weather__graph__tabs__box__item">
+
+          <canvas baseChart
+                  [datasets]="chart.barChartData"
+                  [labels]="chart.barChartLabels"
+                  [options]="chart.barChartOptions"
+                  [legend]="chart.barChartLegend"
+                  [chartType]="chart.barChartType"></canvas>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

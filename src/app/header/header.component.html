@@ -1,0 +1,15 @@
+<header class="header">
+    <div class="header__logo">
+        <img src="https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/logo_OpenWeatherMap_orange.svg"
+             alt="openweathermap">
+    </div>
+    <div class="header__input">
+        <form (ngSubmit)="onSubmit()">
+            <input type="text"
+                   class="header-input"
+                   placeholder="City or zipcode"
+                   [(ngModel)]="serchQ" name="q"
+            />
+        </form>
+    </div>
+</header>
